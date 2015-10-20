@@ -54,15 +54,15 @@ class LSTMAgent(rl.Agent):
         prev_layer = l_input
 
 
-        # l_lstm = LstmRecurrent(name="lstm",
-        #                        size=lstm_n_cells,
-        #                        seq_output=True,
-        #                        out_cells=False,
-        #                        peepholes=False,
-        #                        output_initial_state=False,
-        #                        p_drop=0.0)
-        # l_lstm.connect(prev_layer)
-        # prev_layer = l_lstm
+        l_lstm = LstmRecurrent(name="lstm",
+                               size=lstm_n_cells,
+                               seq_output=True,
+                               out_cells=False,
+                               peepholes=False,
+                               output_initial_state=False,
+                               p_drop=0.0)
+        l_lstm.connect(prev_layer)
+        prev_layer = l_lstm
 
         l_action = MLP([oclf_n_hidden  ] * oclf_n_layers + [n_actions],
                        [oclf_activation] * oclf_n_layers + ['softmax'],
